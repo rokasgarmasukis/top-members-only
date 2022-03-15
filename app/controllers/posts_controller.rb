@@ -17,7 +17,7 @@ class PostsController < ApplicationController
       flash[:notice] = "Post created"
       redirect_to root_path
     else
-      flash[:alert] = "Please enter both title and content"
+      # flash[:alert] = "The title has to be 5 to 20 charachters long"
       render :new, status: :unprocessable_entity
     end
   end
