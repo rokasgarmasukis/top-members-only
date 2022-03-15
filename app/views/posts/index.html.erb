@@ -1,1 +1,13 @@
 <h1>Welcome to Members-Only</h1>
+
+<% @posts.each do |p| %>
+<ul>
+
+<li><%= p.title %> : <%= p.content %>
+<% if user_signed_in? %> BY:
+<%= p.user.username %>
+<% end %>
+</li>
+
+</ul>
+<% end %>

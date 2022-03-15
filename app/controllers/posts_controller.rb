@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
-
   def index
+    @posts = Post.all
   end
 
   def new
@@ -11,6 +11,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
     if @post.save
       flash[:notice] = "Post created"
@@ -23,7 +24,7 @@ class PostsController < ApplicationController
 
   private
 
-  def post_params 
-    params.require(:post).permit(:title, :content, :user_id)
+  def post_params
+    params.require(:post).permit(:title, :content)
   end
 end
